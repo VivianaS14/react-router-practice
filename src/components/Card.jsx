@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 const Card = ({ title, link, description }) => {
   return (
-    <div class="card w-50">
-      <div class="card-body">
-        <h5 class="card-title">Planet: {title}</h5>
-        <p class="card-text">{description}</p>
+    <div className="card w-25 m-2">
+      <div className="card-body">
+        <h5 className="card-title">Planet: {title}</h5>
+        <p className="card-text">{description}</p>
         <Link className="btn btn-primary" to={link}>
           View more
         </Link>

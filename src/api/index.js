@@ -1,4 +1,5 @@
 import axios from "axios";
+import config from "../config"
 
 const api = axios.create({
     baseURL: "https://swapi.dev/api/"
@@ -13,4 +14,9 @@ const getPlanets = async () => {
     }
 }
 
-export { getPlanets }
+const getPlanetDetail = async (id) => {
+    const data = await api.get(`${config.routes.PLANETS}/${id}`)
+    return data
+}
+
+export { getPlanets, getPlanetDetail }

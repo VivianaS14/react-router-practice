@@ -6,7 +6,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import { Home, Planets, NotFound } from "./pages";
+import { Home, Planets, NotFound, PlanetDetail } from "./pages";
 import { Navbar } from "./layout";
 import config from "./config";
 
@@ -19,6 +19,7 @@ const router = createBrowserRouter(
       <Route path={routes.HOME} element={<Navbar />}>
         <Route path={routes.HOME} element={<Home />} />
         <Route path={routes.PLANETS} element={<Planets />} />
+        <Route path={`${routes.PLANETS}/:id`} element={<PlanetDetail />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </>

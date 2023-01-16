@@ -7,7 +7,7 @@ const Card = ({ title, link, description }) => {
       <div className="card-body">
         <h5 className="card-title">Planet: {title}</h5>
         <p className="card-text">{description}</p>
-        <Link className="btn btn-primary" to={link}>
+        <Link className="btn btn-info" to={link}>
           View more
         </Link>
       </div>

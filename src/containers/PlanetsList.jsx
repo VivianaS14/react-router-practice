@@ -5,12 +5,21 @@ import config from "../config";
 
 const PlanetsList = () => {
   const [planets, setPlanets] = useState([]);
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const getData = async () => {
-    const res = await getPlanets();
-    // use the data as res.data.results
+    try {
+      setIsLoading(true);
+      const res = await getPlanets();
+      // use the data as res.data.results
 
-    setPlanets(res.data.results);
+      setPlanets(res.data.results);
+      setIsLoading(false);
+    } catch (error) {
+      setError(error.message);
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -19,16 +28,20 @@ const PlanetsList = () => {
 
   return (
     <div className="container d-flex flex-wrap">
-      {console.log("planets", planets)}
+      {/* console.log("planets", planets) */}
+      {isLoading && <h3>... Loading</h3>}
+      {error.length > 0 && <p>Error: {error}</p>}
 
-      {planets.map((planet, i) => (
-        <Card
-          key={i}
-          title={planet.name}
-          description={planet.terrain}
-          link={`${config.routes.PLANETS}/${i + 1}`}
-        />
-      ))}
+      {planets.length > 0
+        ? planets.map((planet, i) => (
+            <Card
+              key={i}
+              title={planet.name}
+              description={planet.terrain}
+              link={`${config.routes.PLANETS}/${i + 1}`}
+            />
+          ))
+        : null}
     </div>
   );
 };

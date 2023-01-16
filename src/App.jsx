@@ -7,13 +7,20 @@ import {
 } from "react-router-dom";
 
 import { Home, Planets, NotFound } from "./pages";
+import { Navbar } from "./layout";
+import config from "./config";
 
+const { routes } = config;
+
+/* Creamos una ruta madre que va a ser el nabvar y que ella renderizara las demas paginas */
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<Home />} />
-      <Route path="/planets" element={<Planets />} />
-      <Route path="*" element={<NotFound />} />
+      <Route path={routes.HOME} element={<Navbar />}>
+        <Route path={routes.HOME} element={<Home />} />
+        <Route path={routes.PLANETS} element={<Planets />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
     </>
   )
 );
